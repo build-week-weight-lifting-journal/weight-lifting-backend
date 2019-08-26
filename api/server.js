@@ -4,9 +4,15 @@ const helmet = require('helmet');
 
 const server = express();
 
+// Auth router
+const authRouter = require('./auth/auth-router.js');
+
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
+
+// Using the router
+server.use('/api/auth', authRouter); 
 
 server.get('/', (req, res) => {
     const messageOfTheDay = process.env.MOTD || "Welcome to the server!"
