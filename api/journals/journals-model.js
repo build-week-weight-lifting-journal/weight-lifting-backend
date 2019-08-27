@@ -11,18 +11,18 @@ module.exports = {
 
 function find() {
     return db('journals')
-    .select('name', 'region');
+    .select('id', 'name', 'date', 'userId');
 }
 
 // NOT WORKING YET, UNSURE WHY
 function findBy(filter) {
     return db('journals')
-    .where(filter);
+    .where({filter});
 }
 
 function findById(id) {
     return db('journals')
-    .select('name', 'region')
+    .select('id', 'name', 'date', 'userId')
     .where({id})
     .first();
 }

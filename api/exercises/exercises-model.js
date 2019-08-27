@@ -17,7 +17,7 @@ function find() {
 // NOT WORKING YET, UNSURE WHY
 function findBy(filter) {
     return db('exercises')
-    .where(filter);
+    .where({filter});
 }
 
 function findById(id) {
