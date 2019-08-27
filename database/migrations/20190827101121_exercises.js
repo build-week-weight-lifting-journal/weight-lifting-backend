@@ -9,18 +9,6 @@ exports.up = function(knex) {
         exercises
         .string('region')
         .notNullable();
-
-        exercises
-        .integer('reps')
-        .notNullable();
-
-        exercises
-        .integer('sets')
-        .notNullable();
-
-        exercises
-        .string('weight', 128)
-        .notNullable();
     })
 };
 
