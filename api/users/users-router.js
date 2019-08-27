@@ -52,7 +52,6 @@ router.put('/:id', (req, res) => {
         }
     })
     .catch(err => {
-        console.log(err)
         res.status(500).json(err)
     })
 })
@@ -65,6 +64,9 @@ router.delete('/:id', restricted, (req, res) => {
         } else {
             res.status(404).json({message: "This user does not exist!"})
         }
+    })
+    .catch(err => {
+        res.status(500).json(err)
     })
 })
 
