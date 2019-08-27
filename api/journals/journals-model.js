@@ -10,47 +10,48 @@ module.exports = {
 }
 
 function find() {
-    return db('users')
-    .select('id', 'firstName', 'lastName', 'email');
+    return db('journals')
+    .select('id', 'name', 'date', 'userId');
 }
 
+// NOT WORKING YET, UNSURE WHY
 function findBy(filter) {
-    return db('users')
-    .where(filter);
+    return db('journals')
+    .where({filter});
 }
 
 function findById(id) {
-    return db('users')
-    .select('id', 'email', 'firstName', 'lastName')
+    return db('journals')
+    .select('id', 'name', 'date', 'userId')
     .where({id})
     .first();
 }
 
-function add(user) {
-    return db('users')
-    .insert(user)
+function add(journal) {
+    return db('journals')
+    .insert(journal)
     .then(ids => {
-        const [id] = ids; 
-        return db('users')
+        const [id] = ids;
+        return db('journals')
         .where({id})
         .first();
     })
 }
 
 function update(id, changes) {
-    return db('users')
+    return db('journals')
     .where('id', id)
     .update(changes)
     .then(ids => {
         const [id] = ids;
-        return db('users')
+        return db('journals')
         .where({id})
         .first();
     })
 }
 
 function remove(id) {
-    return db('users')
+    return db('journals')
     .where({id})
     .delete();
 }

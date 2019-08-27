@@ -10,47 +10,48 @@ module.exports = {
 }
 
 function find() {
-    return db('users')
-    .select('id', 'firstName', 'lastName', 'email');
+    return db('exercises')
+    .select('name', 'region');
 }
 
+// NOT WORKING YET, UNSURE WHY
 function findBy(filter) {
-    return db('users')
-    .where(filter);
+    return db('exercises')
+    .where({filter});
 }
 
 function findById(id) {
-    return db('users')
-    .select('id', 'email', 'firstName', 'lastName')
+    return db('exercises')
+    .select('name', 'region')
     .where({id})
     .first();
 }
 
-function add(user) {
-    return db('users')
-    .insert(user)
+function add(exercise) {
+    return db('exercises')
+    .insert(exercise)
     .then(ids => {
-        const [id] = ids; 
-        return db('users')
+        const [id] = ids;
+        return db('exercises')
         .where({id})
         .first();
     })
 }
 
 function update(id, changes) {
-    return db('users')
+    return db('exercises')
     .where('id', id)
     .update(changes)
     .then(ids => {
         const [id] = ids;
-        return db('users')
+        return db('exercises')
         .where({id})
         .first();
     })
 }
 
 function remove(id) {
-    return db('users')
+    return db('exercises')
     .where({id})
     .delete();
 }
