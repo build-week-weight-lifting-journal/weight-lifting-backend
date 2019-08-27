@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+const bcrypt = require('bcryptjs');
 const Users = require('./users-model.js');
 const restricted = require('../../middleware/authentication.js');
 
@@ -23,8 +24,6 @@ router.get('/:id', restricted, (req, res) => {
     })
 })
 
-// TEST THE PASSWORD LATER
-
 router.put('/:id', (req, res) => {
     const {id} = req.params
     let changes = req.body;
@@ -40,6 +39,10 @@ router.put('/:id', (req, res) => {
     if (!changes.password) {
         res.status(422).json({message: "Missing fields: password"})
     }
+
+    const hash = bcrypt.hashSync(changes.password, 10);
+    changes.password = hash
+
     Users.update(id, changes)
     .then(updated => {
         if (updated) {
@@ -49,6 +52,7 @@ router.put('/:id', (req, res) => {
         }
     })
     .catch(err => {
+        console.log(err)
         res.status(500).json(err)
     })
 })
