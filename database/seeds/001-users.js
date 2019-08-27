@@ -13,7 +13,8 @@ exports.seed = function(knex) {
         {firstName: 'Elijah', lastName: 'Foster', password: bcrypt.hashSync('pass', 10), email: 'elijah@wlj.to'},
         {firstName: 'Leighton', lastName: 'Fritze', password: bcrypt.hashSync('pass', 10), email: 'leighton@wlj.to'},
         {firstName: 'Joshua', lastName: 'Shockley', password: bcrypt.hashSync('pass', 10), email: 'joshua@wlj.to'},
-        {firstName: 'Dom', lastName: 'Eccleston', password: bcrypt.hashSync('pass', 10), email: 'dom@wlj.to'}
+        {firstName: 'Dom', lastName: 'Eccleston', password: bcrypt.hashSync('pass', 10), email: 'dom@wlj.to'},
+        {firstName: 'Connor', lastName: 'Holly', password: bcrypt.hashSync('pass', 10), email: 'connor@wlj.to'}
       ]);
     });
 };

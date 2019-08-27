@@ -5,6 +5,7 @@ module.exports = {
     find,
     findBy,
     findById,
+    update,
     remove
 }
 
@@ -34,6 +35,13 @@ function add(user) {
         .where({id})
         .first();
     })
+}
+
+function update(id, changes) {
+    return db('users')
+    .where('id', id)
+    .update(changes)
+    .then(count => (count > 0 ? this.get(id) : null));
 }
 
 function remove(id) {
