@@ -3,8 +3,9 @@ const db = require('../../database/dbConfig.js');
 module.exports = {
     add,
     find,
-    findBy,
     findById,
+    findByUserId,
+    findExerciseByJournalByUserId,
     update,
     remove
 }
@@ -14,17 +15,28 @@ function find() {
     .select('id', 'name', 'date', 'userId');
 }
 
-// NOT WORKING YET, UNSURE WHY
-function findBy(filter) {
-    return db('journals')
-    .where({filter});
-}
-
 function findById(id) {
     return db('journals')
     .select('id', 'name', 'date', 'userId')
     .where({id})
     .first();
+}
+
+function findByUserId(userId) {
+    return db('journals')
+    .join('users', 'users.id', 'journals.userId')
+    .where('journals.userId', userId)
+    .select('journals.*')
+}
+
+function findExerciseByJournalByUserId(id, userId) {
+    return db('journalsExercises')
+    .join('journals', 'journals.id', 'journalsExercises.journalId')
+    .where('journalsExercises.journalId', id)
+    .join('users', 'users.id', 'journals.userId')
+    .where('journals.userid', userId)
+    .join('exercises', 'exercises.id', 'journalsExercises.exerciseId')
+    .select('journalsExercises.*', 'exercises.name')
 }
 
 function add(journal) {
@@ -42,8 +54,7 @@ function update(id, changes) {
     return db('journals')
     .where('id', id)
     .update(changes)
-    .then(ids => {
-        const [id] = ids;
+    .then(() => {
         return db('journals')
         .where({id})
         .first();

@@ -23,12 +23,29 @@ router.get('/:id', restricted, (req, res) => {
     })
 })
 
-// NOT WORKING YET, UNSURE WHY
-router.get('/:region', restricted, (req, res) => {
+router.get('/regions/:region', restricted, (req, res) => {
     const {region} = req.params
-    Exercises.findBy(region)
+    Exercises.findByRegion(region)
     .then(exercise => {
         res.status(200).json(exercise)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+})
+
+router.post('/', restricted, (req, res) => {
+    const newexercise = req.body
+    if (!newexercise.name) {
+        res.status(422).json({message: "Missing fields: name"})
+    }
+    if (!newexercise.region) {
+        res.status(422).json({message: "Missing fields: region"})
+    }
+    Exercises.add(newexercise)
+    .then(item => {
+        res.status(201).json(item)
     })
     .catch(err => {
         res.status(500).json(err)
