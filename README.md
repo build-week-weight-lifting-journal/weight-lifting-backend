@@ -110,7 +110,7 @@ This endpoint is a little longer, `api/journals/users/:userId` where `:userId` i
 
 ## Getting all exercises, per journal, by the user's id
 
-This endpoint may be a bit complicated, but follow this guide and it should make sense: `api/journals/exercises/:userId/:id`, where `:userId` is id of the user in the database, and the id is of the journal belonging to that user. *If the user does not have that journal id in their list of journals, this will not work*. It will list each exercise, including the exercise name, the id of the journal (noted in the response as *journalId, NOT id*). This exercise is made in reference to the cross-table, `journalsExercises`, which is where we add weight, reps and sets.
+This endpoint may be a bit complicated, but follow this guide and it should make sense: `api/journals/exercises/:userId/:id`, where `:userId` is id of the user in the database, and the id is of the journal belonging to that user. *If the user does not have that journal id in their list of journals, this will not work*. It will list each exercise, including the exercise name, the id of the journal (noted in the response as *journalId, NOT id*). This exercise is made in reference to the cross-table, `journalsExercises`, which is where we add weight, reps and sets. The response data will also include a message which includes the user id, should you need to reference it.
 
 **When you make a new journal, it is blank, there are no exercises added to it, we will have to make use of the next part to add exercises to it**
 
