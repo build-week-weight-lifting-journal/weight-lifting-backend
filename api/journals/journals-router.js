@@ -44,7 +44,7 @@ router.get('/exercises/:userId/:id', restricted, (req, res) => {
     Journals.findExerciseByJournalByUserId(id, userId)
     .then(item => {
         if (item) {
-            res.status(200).json(item)
+            res.status(200).json({item, message: `This item belongs to user id: ${userId}`})
         } else {
             res.status(404).json({message: "Could not retrieve specific exercises"})
         }
