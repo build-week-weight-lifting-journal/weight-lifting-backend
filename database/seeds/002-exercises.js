@@ -5,21 +5,21 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('exercises').insert([
-        {name: 'Bench Press', region: 'Chest'},
-        {name: 'Barbell Pullover', region: 'Chest'},
-        {name: 'Push Ups', region: 'Chest'},
-        {name: 'Squats', region: 'Legs'},
-        {name: 'Lunge', region: 'Legs'},
-        {name: 'Calf Raise', region: 'Legs'},
-        {name: 'Deadlift', region: 'Back'},
-        {name: 'Bent Over Row', region: 'Back'},
-        {name: 'Power Clean', region: 'Back'},
-        {name: 'Bicep Curl', region: 'Arms'},
-        {name: 'Tricep Extension', region: 'Arms'},
-        {name: 'Reverse Curl', region: 'Arms'},
-        {name: 'Shoulder Shrug', region: 'Shoulders'},
-        {name: 'Military Press', region: 'Shoulders'},
-        {name: 'Upright Row', region: 'Shoulders'},
+        {name: 'Bench Press', region: 'chest'},
+        {name: 'Barbell Pullover', region: 'chest'},
+        {name: 'Push Ups', region: 'chest'},
+        {name: 'Squats', region: 'legs'},
+        {name: 'Lunge', region: 'legs'},
+        {name: 'Calf Raise', region: 'legs'},
+        {name: 'Deadlift', region: 'back'},
+        {name: 'Bent Over Row', region: 'back'},
+        {name: 'Power Clean', region: 'back'},
+        {name: 'Bicep Curl', region: 'arms'},
+        {name: 'Tricep Extension', region: 'arms'},
+        {name: 'Reverse Curl', region: 'arms'},
+        {name: 'Shoulder Shrug', region: 'shoulders'},
+        {name: 'Military Press', region: 'shoulders'},
+        {name: 'Upright Row', region: 'shoulders'},
       ]);
     });
 };

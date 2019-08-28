@@ -38,7 +38,7 @@ router.get('/users/:userId', restricted, (req, res) => {
     })
 })
 
-router.get('/exercises/:id/:userId', restricted, (req, res) => {
+router.get('/exercises/:userId/:id', restricted, (req, res) => {
     const {id} = req.params
     const {userId} = req.params
     Journals.findExerciseByJournalByUserId(id, userId)

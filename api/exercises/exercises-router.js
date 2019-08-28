@@ -35,6 +35,23 @@ router.get('/regions/:region', restricted, (req, res) => {
     })
 })
 
+router.post('/', restricted, (req, res) => {
+    const newexercise = req.body
+    if (!newexercise.name) {
+        res.status(422).json({message: "Missing fields: name"})
+    }
+    if (!newexercise.region) {
+        res.status(422).json({message: "Missing fields: region"})
+    }
+    Exercises.add(newexercise)
+    .then(item => {
+        res.status(201).json(item)
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+})
+
 router.put('/:id', restricted, (req, res) => {
     const {id} = req.params
     let changes = req.body;
