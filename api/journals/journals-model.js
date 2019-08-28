@@ -5,6 +5,7 @@ module.exports = {
     find,
     findBy,
     findById,
+    findByUserId,
     update,
     remove
 }
@@ -25,6 +26,13 @@ function findById(id) {
     .select('id', 'name', 'date', 'userId')
     .where({id})
     .first();
+}
+
+function findByUserId(userId) {
+    return db('journals')
+    .join('users', 'users.id', 'journals.userId')
+    .where('journals.userId', userId)
+    .select('journals.*')
 }
 
 function add(journal) {

@@ -3,7 +3,7 @@ const db = require('../../database/dbConfig.js');
 module.exports = {
     add,
     find,
-    findBy,
+    findByRegion,
     findById,
     update,
     remove
@@ -15,9 +15,10 @@ function find() {
 }
 
 // NOT WORKING YET, UNSURE WHY
-function findBy(filter) {
+function findByRegion(region) {
     return db('exercises')
-    .where({filter});
+    .select('name')
+    .where({region});
 }
 
 function findById(id) {

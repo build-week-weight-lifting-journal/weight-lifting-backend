@@ -23,14 +23,14 @@ router.get('/:id', restricted, (req, res) => {
     })
 })
 
-// NOT WORKING YET, UNSURE WHY
-router.get('/:region', restricted, (req, res) => {
+router.get('/regions/:region', restricted, (req, res) => {
     const {region} = req.params
-    Exercises.findBy(region)
+    Exercises.findByRegion(region)
     .then(exercise => {
         res.status(200).json(exercise)
     })
     .catch(err => {
+        console.log(err)
         res.status(500).json(err)
     })
 })

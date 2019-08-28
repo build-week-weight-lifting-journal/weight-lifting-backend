@@ -23,15 +23,15 @@ router.get('/:id', restricted, (req, res) => {
     })
 })
 
-// NOT WORKING YET, UNSURE WHY
-router.get('/:userId', restricted, (req, res) => {
+router.get('/users/:userId', restricted, (req, res) => {
     const {userId} = req.params
-    Journals.findBy(userId)
+    Journals.findByUserId(userId)
     .then(journal => {
-        res.status(200).json(journal)
-    })
-    .catch(err => {
-        res.status(500).json(err)
+        if (journal) {
+            res.status(200).json(journal)
+        } else {
+            res.status(404).json({message: "Could not retrieve specific journal by user"})
+        }
     })
 })
 
