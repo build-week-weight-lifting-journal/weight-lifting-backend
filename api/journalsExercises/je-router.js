@@ -16,19 +16,35 @@ router.get('/', restricted, (req, res) => {
 router.get('/:id', restricted, (req, res) => {
     Jouexe.findById(req.params.id)
     .then(item => {
+        console.log(item)
         res.status(200).json(item)
     })
     .catch(err => {
+        console.log(err)
         res.status(500).json(err)
     })
 })
 
-// NOT WORKING YET, UNSURE WHY
-router.get('/:region', restricted, (req, res) => {
-    const {region} = req.params
-    Jouexe.findBy(region)
+router.post('/newjouexe', restricted, (req, res) => {
+    let newjouexe = req.body;
+    if (!newjouexe.weight) {
+        res.status(422).json({message: "Missing fields: weight"})
+    }
+    if (!newjouexe.reps) {
+        res.status(422).json({message: "Missing fields: reps"})
+    }
+    if (!newjouexe.sets) {
+        res.status(422).json({message: "Missing fields: sets"})
+    }
+    if (!newjouexe.journalId) {
+        res.status(422).json({message: "Missing fields: journalId"})
+    }
+    if (!newjouexe.exerciseId) {
+        res.status(422).json({message: "Missing fields: exerciseId"})
+    }
+    Jouexe.add(newjouexe)
     .then(item => {
-        res.status(200).json(item)
+        res.status(201).json(item);
     })
     .catch(err => {
         res.status(500).json(err)
@@ -38,11 +54,20 @@ router.get('/:region', restricted, (req, res) => {
 router.put('/:id', restricted, (req, res) => {
     const {id} = req.params
     let changes = req.body;
-    if (!changes.name) {
-        res.status(422).json({message: "Missing fields: name"})
+    if (!newjouexe.weight) {
+        res.status(422).json({message: "Missing fields: weight"})
     }
-    if (!changes.region) {
-        res.status(422).json({message: "Missing fields: region"})
+    if (!newjouexe.reps) {
+        res.status(422).json({message: "Missing fields: reps"})
+    }
+    if (!newjouexe.sets) {
+        res.status(422).json({message: "Missing fields: sets"})
+    }
+    if (!newjouexe.journalId) {
+        res.status(422).json({message: "Missing fields: journalId"})
+    }
+    if (!newjouexe.exerciseId) {
+        res.status(422).json({message: "Missing fields: exerciseId"})
     }
     Jouexe.update(id, changes)
     .then(updated => {
