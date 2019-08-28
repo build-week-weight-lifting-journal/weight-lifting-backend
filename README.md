@@ -18,7 +18,7 @@ If using Herokuu, continue here, otherwise scroll down to local machine:
 5) Copy and paste the link from herokuu into the address bar, and click send.
 6) Your REST client should return with the following message "Welcome to the server!"
 
-
+# Users
 ## Making a new user and logging in
 
 1) At the end of your address link, put the following items `api/auth`, this selects the authorization route that we will need to access in order to register a new user and log in.
@@ -51,11 +51,11 @@ Items MUST be in quotes, that is how the server knows which item goes where.
 
 1) Removing `api/auth/login` from your address bar, with the `Authorization` header now installed, we can now add `api/users/` to the end of our link. By clicking send, we tell the server "Hey, I have this token that you seem to require to access you, here you go", and the server responds with the requested information.
 2) If you do not provide the token, the server will respond with an error. Consequentially, if you provide the server with an expired token, the server will respond with an error. Tokens expire every twenty-four hours from creation.
-3) You can add a number to the end of `auth/users/` if you wish to select only that user. That endpoint looks like `auth/users/:id`, where `:id` is the id of the user you wish to select. 
+3) You can add a number to the end of `auth/users/` if you wish to select only that user. That endpoint looks like `api/users/:id`, where `:id` is the id of the user you wish to select. 
 
 ## Updating the user
 
-1) Using a PUT request (in the same dropdown menu in Insomnia), you would select a user by its id, `auth/users/:id`, and you would put the following information in the JSON body:
+1) Using a PUT request (in the same dropdown menu in Insomnia), you would select a user by its id, `api/users/:id`, and you would put the following information in the JSON body:
 {
     "email": You can update this,
     "password": You can update this,
@@ -63,4 +63,8 @@ Items MUST be in quotes, that is how the server knows which item goes where.
     "lastName": You can update this
 }
 2) Though you may not be updating all of them, they do all need to be part of the PUT request, or the server will return with an error! The password will be the plaintext password that you use to log in, not the hash, but it will return with a hash. 
-3) To see your updates, simply run the `auth/users/:id` GET request again.
+3) Your updates will be shown in the return preview window in Insomnia
+
+## Deleting the user
+
+1) Using a DELETE request, you would select a user by its id, `api/users

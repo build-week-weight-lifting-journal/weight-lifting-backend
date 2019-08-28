@@ -32,6 +32,7 @@ function add(user) {
     .then(ids => {
         const [id] = ids; 
         return db('users')
+        .select('id', 'email', 'firstName', 'lastName')
         .where({id})
         .first();
     })

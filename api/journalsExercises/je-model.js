@@ -11,7 +11,8 @@ module.exports = {
 
 function find() {
     return db('journalsExercises')
-    .select('weight', 'reps', 'sets', 'journalId', 'exerciseId');
+    .join('exercises', 'exercises.id', 'journalsExercises.exerciseId')
+    .select('journalsExercises.*', 'exercises.name');
 }
 
 // NOT WORKING YET, UNSURE WHY
@@ -47,7 +48,9 @@ function update(id, changes) {
     .update(changes)
     .then(() => {
         return db('journalsExercises')
-        .where({id})
+        .join('exercises', 'exercises.id', 'journalsExercises.exerciseId')
+        .where('journalsExercises.id', id)
+        .select('journalsExercises.*', 'exercises.name')
         .first();
     })
 }

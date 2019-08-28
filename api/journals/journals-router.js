@@ -54,7 +54,7 @@ router.get('/exercises/:id/:userId', restricted, (req, res) => {
     })
 })
 
-router.post('/newjournal', restricted, (req, res) => {
+router.post('/', restricted, (req, res) => {
     let newjournal = req.body;
     if (!newjournal.userId) {
         res.status(422).json({message: "Missing fields: userId"})

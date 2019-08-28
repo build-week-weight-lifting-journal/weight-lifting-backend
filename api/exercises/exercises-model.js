@@ -11,10 +11,9 @@ module.exports = {
 
 function find() {
     return db('exercises')
-    .select('name', 'region');
+    .select('*');
 }
 
-// NOT WORKING YET, UNSURE WHY
 function findByRegion(region) {
     return db('exercises')
     .select('name')

@@ -25,7 +25,7 @@ router.get('/:id', restricted, (req, res) => {
     })
 })
 
-router.post('/newjouexe', restricted, (req, res) => {
+router.post('/', restricted, (req, res) => {
     let newjouexe = req.body;
     if (!newjouexe.weight) {
         res.status(422).json({message: "Missing fields: weight"})
@@ -54,19 +54,19 @@ router.post('/newjouexe', restricted, (req, res) => {
 router.put('/:id', restricted, (req, res) => {
     const {id} = req.params
     let changes = req.body;
-    if (!newjouexe.weight) {
+    if (!changes.weight) {
         res.status(422).json({message: "Missing fields: weight"})
     }
-    if (!newjouexe.reps) {
+    if (!changes.reps) {
         res.status(422).json({message: "Missing fields: reps"})
     }
-    if (!newjouexe.sets) {
+    if (!changes.sets) {
         res.status(422).json({message: "Missing fields: sets"})
     }
-    if (!newjouexe.journalId) {
+    if (!changes.journalId) {
         res.status(422).json({message: "Missing fields: journalId"})
     }
-    if (!newjouexe.exerciseId) {
+    if (!changes.exerciseId) {
         res.status(422).json({message: "Missing fields: exerciseId"})
     }
     Jouexe.update(id, changes)
